@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<meta name="robots" content="noindex, nofollow">
+
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Intégration CSS module Bootstrap Table -->
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+<!-- Intégration CSS BootStrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<!-- Material Design Bootstrap -->
+<link href="{{url_for('static', filename='/mdb/css/mdb.css')}}" rel="stylesheet">
+
+<title>{{ title }}</title>
+<style> 
+      .card-img-top{ 
+      max-width: 100%;
+      max-height: 500px;
+      height: 100%;
+      } 
+      
+      .poster {
+      position: relative;
+      display: block;
+      }
+
+      .badge-plateforme {
+      left: 2%;
+      top: 2%;
+      position: absolute;
+      margin-top: 0px;
+      margin-left: 0px;
+      padding-bottom: 0;
+      }
+      .badge-genre {
+      left: 2%;
+      top: 91%;
+      position: absolute;
+      margin-top: 0px;
+      margin-left: 0px;
+      padding-bottom: 0;
+      }
+      .badge-duration {
+      left: 71%;
+      top: 91%;
+      position: absolute;
+      margin-top: 0px;
+      margin-left: 0px;
+      padding-bottom: 0;
+      }
+      .badge-duration-min {
+      left: 78%;
+      top: 91%;
+      position: absolute;
+      margin-top: 0px;
+      margin-left: 0px;
+      padding-bottom: 0;
+      }
+      .badge-year {
+      left: 82%;
+      top: 2%;
+      position: absolute;
+      margin-top: 0px;
+      margin-left: 0px;
+      padding-bottom: 0;
+      }
+      .badge-langue {
+      left: 2%;
+      top: 10%;
+      position: absolute;
+      margin-top: 0px;
+      margin-left: 0px;
+      padding-bottom: 0;
+      }
+      .wow {
+      visibility: hidden;
+      }
+	 .navbar-brand {
+	  padding: 0;
+	  }
+	  .navbar-nav .nav-link {
+	  padding-top: 0;
+	  padding-bottom: 0;
+	  height: 20px;
+	  }
+</style>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/wow/0.1.12/wow.min.js"></script>
+<script>new WOW().init();</script>
+
+
+</head>
+<body>
+<style type="text/css"> body { background: DarkGrey !important; } </style>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center" >
+  <a class="nav-brand" href="https://github.com/suPablo/sorties_vod">
+   <img src="{{ url_for('static', filename='images/github_logo.jpg') }}" width="30" height="30" alt="Github">
+  </a>
+  <h4>
+	<ul class="navbar-nav">
+	  <li class="nav-item ">
+	    <a class="nav-link" href="https://github.com/suPablo/sorties_vod">Github</a>
+	  </li>
+	</ul>
+  </h4>
+</nav>
+
+
+{% block content %}{% endblock %}
+
+<!-- Intégration jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Intégration popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<!-- Intégration javaScript BootStrap-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- Intégration javaScript module Bootstrap Table -->
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/mdb/js/mdb.min.js"></script>
+
+</body>
+</html>

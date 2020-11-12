@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+	{% for message in messages %}
+	<div class="alert alert-info animated hinge" data-wow-delay="10.0s">
+{{ message }}
+</div>
+	{% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="container-fluid">
+     <div class="row">
+		{%for movie in name_list%} 
+		<div class="col-sm-3">
+		
+			<!-- Défnition de la carte et de son fond / plateforme -->
+			{% if scrap[movie][0] == 1 %}
+			<div class="card bg-dark text-muted wow bounceInUp" style="height: 800px; width:300px">
+			{% else %}
+			<div class="card bg-secondary wow bounceInUp" style="height: 800px; width:300px">
+			{% endif %}
+				<div class='poster'>
+				
+					<!-- Définition du poster -->
+					{% if scrap[movie][2] == '' or scrap[movie][2] == None  or scrap[movie][2] == []%}
+					<img class="card-img-top img-responsive" src="{{ url_for('static', filename='images/basic_poster.jpg') }}"  loading="lazy" alt="Card image">
+					{% else %}
+					<img class="card-img-top img-responsive" src={{scrap[movie][2]}}  loading="lazy" alt="Card image">
+					{% endif %}
+					
+					<!-- Définition du badge de genre -->
+					{% if scrap[movie][11]|length > 0 %}
+					<span class="badge badge-light badge-genre"><h6><strong>{{scrap[movie][11]|string}}</strong></h6></span>
+					{% endif %}
+					
+					<!-- Définition du badge de durée -->
+					{% if scrap[movie][5] == 0 or scrap[movie][5] == []%}
+					{% elif "h" in scrap[movie][5]|string%}
+					<span class="badge badge-light badge-duration"><h6><strong>{{scrap[movie][5]|string}}</strong></h6></span>
+					{% else %}
+					<span class="badge badge-light badge-duration-min"><h6><strong>{{scrap[movie][5]|string}}</strong></h6></span>
+					{% endif %}
+					
+					<!-- Définition du badge d'année -->
+					{% if scrap[movie][7] == 0 or scrap[movie][7] == [] or scrap[movie][7] == None%}
+					{% else %}
+					<span class="badge badge-light badge-year"><h6><strong>{{scrap[movie][7]|string}}</strong></h6></span>
+					{% endif %}
+					
+					<!-- Définition du badge de plateforme -->
+					{% if scrap[movie][8] == 'Netflix' %}
+					<span class="badge badge-danger badge-plateforme"><h6><strong>Netflix</strong></h6></span>
+					{% elif scrap[movie][8] == 'Prime' %}
+					<span class="badge badge-info badge-plateforme"><h6><strong>Prime</strong></h6></span>
+					{% else %}
+					<span class="badge badge-warning badge-plateforme"><h6><strong>Local</strong></h6></span>
+					{% endif %}
+					
+					<!-- Définition du badge de langue -->
+					{% if scrap[movie][1] == 'VOSTFR' %}
+					<span class="badge badge-warning badge-langue"><h6><strong>VOSTFR</strong></h6></span>
+					{% endif %}
+				</div>
+				
+				<!-- Définition de la barre de notation -->
+				{% if scrap[movie][9] > 0 %}
+				<div class="progress">
+					{% if scrap[movie][9] > 65 %}
+					<div class="progress-bar bg-success wow heartBeat" style="width:{{scrap[movie][9]|string}}%">{{scrap[movie][9]|string}}</div>
+					{% elif scrap[movie][9] > 40 %}
+					<div class="progress-bar bg-warning text-dark" style="width:{{scrap[movie][9]|string}}%">{{scrap[movie][9]|string}}</div>
+					{% else %}
+					<div class="progress-bar bg-danger" style="width:{{scrap[movie][9]|string}}%">{{scrap[movie][9]|string}}</div>
+					{% endif %}
+				</div>
+				{% endif %}
+				<div class="card-body">
+				
+				<!-- Définition du badge du titre et synopsis -->
+				<h4 class="card-title">{{scrap[movie][3]}}</h4>
+				<p class="card-text">{{scrap[movie][10]}}</p>
+				
+				<!-- Définition du lien -->
+				{% if scrap[movie][8] == 'Local' and scrap[movie][0] == 1%}
+				<a href={{"/flask/open/1/"+scrap[movie][6]}} class="btn btn-secondary text-body">Voir</a>
+				{% elif scrap[movie][8] == 'Local' and scrap[movie][0] == 0%}
+				<a href={{"/flask/open/0/"+scrap[movie][6]}} class="btn btn-dark">Voir</a>
+				{% elif scrap[movie][0] == 1%}
+				<a href={{scrap[movie][6]|string}} class="btn btn-secondary text-body">Voir</a>
+				{% elif scrap[movie][0] == 0%}
+				<a href={{scrap[movie][6]|string}} class="btn btn-dark">Voir</a>
+				{% endif %}
+				</div>
+			</div>
+		</div>
+		{% if loop.index is divisibleby(4) %}
+			</div>
+			</br>
+			<div class="row">
+		{% endif %}
+		{%endfor%}
+    </div>
+</div>
+{% endblock %}
